@@ -23,10 +23,14 @@ for i, column in enumerate(df.columns):
                 column_word_count[w] = 1
     word_counts[column] = column_word_count
 
+result_df = pd.DataFrame()
 
 for column, counts in word_counts.items():
-    print(f"\n'{column}'：")
-    for word, count in counts.items():
-        print(f"{word}: {count}")
- 
- 
+    column_df = pd.DataFrame(list(counts.items()), columns=[column, 'Count'])
+    result_df = pd.concat([result_df, column_df], axis=1)
+
+output_file_path = 'C:\\Users\\16262\\Downloads\\同花顺\\结果.xlsx'
+with pd.ExcelWriter(output_file_path) as writer:
+    result_df.to_excel(writer, index=False)
+
+print(f"结果已保存到 {output_file_path}")
