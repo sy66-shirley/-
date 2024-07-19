@@ -32,5 +32,3 @@ for column, counts in word_counts.items():
 output_file_path = 'C:\\Users\\16262\\Downloads\\同花顺\\结果.xlsx'
 with pd.ExcelWriter(output_file_path) as writer:
     result_df.to_excel(writer, index=False)
-
-print(f"结果已保存到 {output_file_path}")
